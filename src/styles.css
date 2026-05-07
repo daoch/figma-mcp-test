@@ -1,3 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+:root {
+  --meli-yellow: #ffe600;
+  --meli-blue: #3483fa;
+  --meli-page-bg: #ededed;
+  --meli-card-bg: #ffffff;
+  --meli-border: #e7e7e7;
+  --meli-text: #333333;
+  --meli-text-muted: #707070;
+  --meli-font: 'Aptos', 'Segoe UI', 'Trebuchet MS', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--meli-page-bg);
+  color: var(--meli-text);
+  font-family: var(--meli-font);
+  margin: 0;
+  min-width: 320px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a,
+button,
+input {
+  font: inherit;
+}
+
+.app-container {
+  margin: 0 auto;
+  width: min(1226px, calc(100% - 32px));
+}

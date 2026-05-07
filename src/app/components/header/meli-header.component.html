@@ -1,0 +1,45 @@
+<header class="meli-header">
+  <div class="meli-navbar">
+    <div class="meli-navbar__top app-container">
+      <a class="meli-logo" href="#" aria-label="Mercado Libre">
+        <span class="meli-logo__badge"></span>
+        <span class="meli-logo__text">mercado<br />libre</span>
+      </a>
+
+      <label class="meli-search" aria-label="Buscar">
+        <input type="text" placeholder="Buscar productos, marcas y más..." />
+        <span class="meli-search__icon">⌕</span>
+      </label>
+
+      <div class="meli-banner">Disney+ STAR+ | Por $999 ¡Suscribite a nivel 6!</div>
+    </div>
+
+    <div class="meli-navbar__bottom app-container">
+      <div class="meli-location">
+        <span class="meli-location__pin">⌖</span>
+        <div>
+          <small>Enviar a</small>
+          <strong>Capital Federal 1425</strong>
+        </div>
+      </div>
+
+      <nav class="meli-navlinks" aria-label="Primary navigation">
+        @for (item of leftLinks; track item.label) {
+          <a href="#" class="meli-navlinks__item" [class.meli-navlinks__item--with-icon]="item.trailingIcon">
+            <span>{{ item.label }}</span>
+            @if (item.trailingIcon) {
+              <span class="meli-navlinks__chevron">⌄</span>
+            }
+          </a>
+        }
+      </nav>
+
+      <nav class="meli-navlinks meli-navlinks--right" aria-label="User navigation">
+        @for (item of rightLinks; track item) {
+          <a href="#">{{ item }}</a>
+        }
+        <a href="#" class="meli-cart" aria-label="Carrito">🛒</a>
+      </nav>
+    </div>
+  </div>
+</header>

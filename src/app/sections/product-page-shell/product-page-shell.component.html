@@ -1,0 +1,157 @@
+<main class="app-container product-page">
+  <section class="interest-links">
+    <span>También puede interesarte:</span>
+    @for (link of interestLinks; let last = $last; track link) {
+      <a class="meli-link" href="#">{{ link }}</a>
+      @if (!last) {
+        <span class="sep"></span>
+      }
+    }
+  </section>
+
+  <section class="breadcrumbs-row">
+    <div class="breadcrumbs">
+      <a class="meli-link" href="#">Celulares y Smartphones</a>
+      <a class="meli-link" href="#">Xiaomi Redmi Note 11</a>
+    </div>
+    <div class="breadcrumbs-actions">
+      <a class="meli-link" href="#">Compartir</a>
+      <span></span>
+      <a class="meli-link" href="#">Vender uno igual</a>
+    </div>
+  </section>
+
+  <section class="hero-surface">
+    <div class="hero-layout">
+      <div class="hero-layout__left">
+        <app-product-gallery />
+        <app-product-info />
+      </div>
+      <div class="hero-layout__right">
+        <app-payment-sidebar />
+      </div>
+    </div>
+  </section>
+
+  <section class="stack-section content-surface">
+    <h2>Productos relacionados</h2>
+    <p class="section-caption">Promocionado</p>
+    <div class="related-grid">
+      @for (card of cards; track card.title) {
+        <article class="product-card">
+          <div class="product-card__image"></div>
+          <h3>{{ card.title }}</h3>
+          <strong>{{ card.price }}</strong>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="stack-section content-surface">
+    <h2>Publicaciones del vendedor</h2>
+    <div class="seller-grid">
+      @for (card of sellerCards; track card.title) {
+        <article class="seller-card">
+          <div class="seller-card__image"></div>
+          <div>
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.body }}</p>
+          </div>
+        </article>
+      }
+    </div>
+    <a class="meli-link" href="#">Ver más publicaciones del vendedor</a>
+  </section>
+
+  <section class="stack-section content-surface">
+    <h2>Características de Xiaomi Redmi Note 11 (Snapdragon)</h2>
+    <div class="specs-grid">
+      @for (spec of specs; track spec.label) {
+        <div class="spec-card">
+          <span class="spec-card__icon">◫</span>
+          <div>
+            <h3>{{ spec.label }}</h3>
+            <p>{{ spec.value }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="stack-section content-surface">
+    <h2>Descripción</h2>
+    <div class="description-copy">
+      <p>
+        Fotografía profesional en tu bolsillo. Descubrí infinitas posibilidades para tus fotos con las 4 cámaras principales de tu equipo. Poné a prueba tu creatividad y jugá con la iluminación, diferentes planos y efectos para obtener grandes resultados.
+      </p>
+      <p>
+        Experiencia visual increíble. Mirá tus series y películas favoritas con la mejor definición a través de su pantalla AMOLED de 6.43". Disfrutá de colores brillantes y detalles precisos en todos tus contenidos.
+      </p>
+      <p>
+        Mayor rendimiento. Su memoria RAM de 4 GB permite que tu smartphone funcione de manera fluida y sin demoras al realizar distintas tareas, jugar o navegar.
+      </p>
+      <p>
+        Batería de duración superior. Con la súper batería de 5000 mAh tendrás energía por mucho más tiempo para jugar, ver series o trabajar sin necesidad de realizar recargas.
+      </p>
+    </div>
+  </section>
+
+  <section class="stack-section content-surface">
+    <h2>Preguntas y respuestas</h2>
+    <h3 class="section-subtitle">¿Qué querés saber?</h3>
+    <div class="question-tags">
+      @for (question of questions; track question) {
+        <button type="button">{{ question }}</button>
+      }
+    </div>
+    <p class="search-label">Buscá lo que querés saber</p>
+    <label class="question-search">
+      <input type="text" placeholder="Buscar preguntas..." />
+    </label>
+    <button class="see-more-btn" type="button">Hacer una pregunta</button>
+  </section>
+
+  <div class="content-surface reviews-surface">
+    <app-reviews-section />
+  </div>
+
+  <section class="stack-section">
+    <div class="related-footer">
+      <span>Publicación #1157040888</span>
+      <a class="meli-link" href="#">Denunciar</a>
+    </div>
+  </section>
+
+  <section class="stack-section content-surface">
+    <h2>Quienes vieron este producto también compraron</h2>
+    <div class="related-grid related-grid--five">
+      @for (card of fiveCards; track card.title) {
+        <article class="product-card">
+          <div class="product-card__image"></div>
+          <h3>{{ card.title }}</h3>
+          <strong>{{ card.price }}</strong>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="stack-section content-surface">
+    <h2>Quienes vieron este producto también compraron</h2>
+    <div class="related-grid related-grid--five">
+      @for (card of fiveCards; track card.title + '-b') {
+        <article class="product-card">
+          <div class="product-card__image"></div>
+          <h3>{{ card.title }}</h3>
+          <strong>{{ card.price }}</strong>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="brand-banner">
+    <div class="brand-banner__copy">
+      <small>Patrocinado</small>
+      <h2>Dove: cuidado personal con envíos rápidos y cuotas</h2>
+    </div>
+  </section>
+</main>
