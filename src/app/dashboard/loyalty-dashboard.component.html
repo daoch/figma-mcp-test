@@ -1,0 +1,225 @@
+<div class="min-h-screen bg-[#f3f4f6] text-slate-900">
+  <div class="mx-auto grid min-h-screen max-w-[1440px] lg:grid-cols-[240px_minmax(0,1fr)]">
+    <aside class="border-r border-slate-200 bg-white px-4 py-6 lg:px-6 lg:py-10">
+      <div class="mb-8 text-[1.375rem] font-medium leading-7 text-slate-900">Loyalty</div>
+
+      <div class="mb-8 rounded-md bg-[#879fff] px-5 py-2.5 text-base leading-[22px] text-white">
+        Personal info
+      </div>
+
+      <nav aria-label="Sidebar" class="space-y-7 text-sm leading-5">
+        @for (section of sidebarSections; track $index) {
+          <ul class="space-y-3">
+            @for (link of section.links; track link.label) {
+              <li>
+                <a
+                  href="#"
+                  class="flex items-center justify-between gap-3 text-slate-900 transition-colors hover:text-[#6484fc]"
+                  [class.pl-4]="link.indented"
+                  [class.font-medium]="link.active"
+                >
+                  <span class="flex items-center gap-1">
+                    @if (link.label === 'Loyalty rewards') {
+                      <span aria-hidden="true" class="text-xs">⌄</span>
+                    }
+                    {{ link.label }}
+                  </span>
+
+                  @if (link.badge) {
+                    <span
+                      class="inline-flex min-w-5 items-center justify-center rounded text-[11px] leading-none"
+                      [class.h-5]="link.badgeVariant === 'count'"
+                      [class.w-5]="link.badgeVariant === 'count'"
+                      [class.bg-[#ff571d]]="true"
+                      [class.px-1.5]="link.badgeVariant === 'status'"
+                      [class.py-1]="link.badgeVariant === 'status'"
+                      [class.text-white]="true"
+                    >
+                      {{ link.badge }}
+                    </span>
+                  }
+                </a>
+              </li>
+            }
+          </ul>
+        }
+      </nav>
+
+      <button type="button" class="mt-16 inline-flex items-center gap-2 text-sm leading-5 text-slate-900">
+        <span aria-hidden="true" class="text-[#879fff]">↪</span>
+        Logout
+      </button>
+    </aside>
+
+    <div class="min-w-0">
+      <header class="border-b border-slate-200 bg-white">
+        <div class="flex flex-wrap items-center gap-4 px-5 py-4 lg:px-8">
+          <button
+            type="button"
+            class="inline-flex size-10 items-center justify-center rounded-full text-slate-700 transition hover:bg-slate-100"
+            aria-label="Open navigation"
+          >
+            ☰
+          </button>
+
+          <form class="min-w-[16rem] flex-1 lg:max-w-[20rem]">
+            <label class="sr-only" for="dashboard-search">Search</label>
+            <div class="relative">
+              <input
+                id="dashboard-search"
+                type="search"
+                placeholder="Search"
+                class="h-10 w-full rounded-2xl border border-slate-200 bg-slate-100 pl-10 pr-4 text-sm outline-none transition focus:border-[#879fff] focus:bg-white"
+              />
+              <span aria-hidden="true" class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">⌕</span>
+            </div>
+          </form>
+
+          <nav aria-label="Top navigation" class="ml-auto flex flex-wrap items-center gap-6 text-sm leading-[22px]">
+            @for (item of topNavItems; track item.label) {
+              <a
+                href="#"
+                class="inline-flex items-center gap-1 text-slate-900"
+                [class.text-[#ed3737]]="item.active"
+                [class.font-medium]="item.active"
+              >
+                {{ item.label }}
+                @if (item.expandable) {
+                  <span aria-hidden="true" class="text-xs">⌄</span>
+                }
+              </a>
+            }
+
+            <div class="flex items-center gap-2">
+              <div class="flex size-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,#f8d6cb,#7f9cff)] text-sm font-medium text-white">
+                M
+              </div>
+              <span class="text-sm leading-[22px]">Hi Mary</span>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main class="px-5 py-5 lg:px-8 lg:py-6">
+        <section class="mx-auto max-w-[1140px] space-y-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h1 class="text-[1.75rem] font-semibold leading-8 tracking-[-0.02em] text-slate-900">Dashboard</h1>
+
+            <label class="inline-flex w-full max-w-[9rem] items-center justify-between rounded border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 sm:w-auto">
+              <span>Select store</span>
+              <span aria-hidden="true" class="text-slate-500">⌄</span>
+            </label>
+          </div>
+
+          <section class="rounded-lg bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+            <div class="grid gap-4 text-sm leading-5 md:grid-cols-4">
+              <div class="pt-1 text-sm font-bold text-[#ed3737]">0%</div>
+
+              @for (tier of tiers; track tier.name) {
+                <div class="space-y-0.5">
+                  <h2 class="text-xs font-medium text-slate-900">{{ tier.name }}</h2>
+                  <p class="text-xs text-slate-900">
+                    {{ tier.threshold }}
+                    <span class="font-medium text-[#ed3737]"> - {{ tier.discount }}</span>
+                  </p>
+                </div>
+              }
+            </div>
+
+            <div class="mt-6">
+              <div class="h-2 rounded-full bg-[#f1f2f6]">
+                <div class="relative h-2 w-[21%] rounded-full bg-[#6484fc]">
+                  <span class="absolute right-0 top-1/2 size-4 -translate-y-1/2 translate-x-1/2 rounded-full border-4 border-white bg-[#6484fc] shadow-sm"></span>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-5 text-[13px] leading-[22px] text-slate-900">
+              Your sale -
+              <span class="font-medium text-[#ed3737]"> 10% </span>
+              Get
+              <span class="font-medium"> 200 </span>
+              more points to become a
+              <span class="font-medium text-[#ed3737]"> 15% </span>
+              discount
+            </p>
+          </section>
+
+          <section class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            @for (card of bonusCards; track card.tier) {
+              <app-bonus-card [card]="card" />
+            }
+          </section>
+
+          <section class="space-y-5">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <h2 class="text-[2rem] font-medium leading-10 tracking-[-0.03em] text-slate-900">Latest orders</h2>
+
+              <div class="flex flex-col gap-3 sm:flex-row">
+                <label class="inline-flex min-w-[7rem] items-center justify-between rounded border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900">
+                  <span>Select store</span>
+                  <span aria-hidden="true" class="text-slate-500">⌄</span>
+                </label>
+
+                <label class="inline-flex min-w-[7rem] items-center justify-between rounded border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900">
+                  <span>04.05.2024</span>
+                  <span aria-hidden="true" class="text-slate-500">⌄</span>
+                </label>
+              </div>
+            </div>
+
+            <section class="overflow-hidden rounded-lg bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+              <div class="hidden grid-cols-[5rem_1.2fr_1fr_1fr_10rem] gap-4 border-b border-slate-100 px-4 py-3 text-xs text-slate-900 md:grid">
+                <span>ID</span>
+                <span>Product name</span>
+                <span>Adress</span>
+                <span>Price</span>
+                <span>Action</span>
+              </div>
+
+              <div class="divide-y divide-slate-100">
+                @for (order of orders; track order.id) {
+                  <article class="grid gap-3 px-4 py-3 md:grid-cols-[5rem_1.2fr_1fr_1fr_10rem] md:items-start md:gap-4">
+                    <div class="text-xs leading-[18px] text-slate-900">
+                      <span class="md:hidden font-medium">ID: </span>{{ order.id }}
+                    </div>
+
+                    <div class="space-y-2">
+                      <p class="text-xs leading-[18px] text-slate-700">{{ order.product }}</p>
+
+                      @if (order.hasPreview) {
+                        <div class="flex gap-1" aria-label="Product preview thumbnails">
+                          @for (preview of [1, 2, 3, 4]; track preview) {
+                            <span class="inline-flex h-6 w-5 items-center justify-center rounded bg-[#ede7df] text-[10px] text-slate-500">
+                              {{ preview }}
+                            </span>
+                          }
+                        </div>
+                      }
+                    </div>
+
+                    <div class="text-xs leading-[18px] text-slate-500">
+                      <span class="md:hidden font-medium text-slate-900">Adress: </span>{{ order.address }}
+                    </div>
+
+                    <div class="text-xs leading-4">
+                      @if (order.originalPrice) {
+                        <span class="mr-1 text-slate-400 line-through">{{ order.originalPrice }}</span>
+                      }
+                      <span class="font-medium text-[#4880ff]">{{ order.price }}</span>
+                    </div>
+
+                    <button type="button" class="inline-flex items-center justify-between gap-2 text-left text-xs leading-[18px] text-slate-900 md:justify-start">
+                      <span>{{ order.action }}</span>
+                      <span aria-hidden="true" class="text-slate-500">⌄</span>
+                    </button>
+                  </article>
+                }
+              </div>
+            </section>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
